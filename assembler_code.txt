@@ -1,1 +1,5 @@
-MOV A 43
+MOV A 32
+MOV B 12
+MOV [0] A
+MOV A B
+MOV B [0]
