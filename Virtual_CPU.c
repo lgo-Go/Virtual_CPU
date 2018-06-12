@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(void)
 {
@@ -16,7 +17,7 @@ int main(void)
     int address_1 = 0;                                        // Если пользователь хочет произвести действие с памятью через адрес,
     int address_2 = 0;                                        // сюда сораняется номер ячейки памяти, который он ввёл
 
-    int memory[256];
+    int memory[256] = {0};
     int reg_a, reg_b, reg_c, reg_d,
         carry_flag, zero_flag,
         *stack_pointer, *instruction_pointer;
@@ -39,7 +40,7 @@ int main(void)
         ++i_comand;
         ++size_comand;
     }
-    comand[i_comand] = '\n';
+    comand[i_comand] = '\0';
 
     while((argument_1[i_argument_1] = getc(pf)) != ' ')
     {
@@ -48,7 +49,7 @@ int main(void)
             ++i_argument_1;
             ++size_argument_1;
     }
-    argument_1[i_argument_1] = '\n';
+    argument_1[i_argument_1] = '\0';
 
     while((argument_2[i_argument_2] = getc(pf)) != ' ')
     {
@@ -57,21 +58,84 @@ int main(void)
         ++i_argument_2;
         ++size_argument_2;
     }
-    argument_2[i_argument_2] = '\n';                          // <
+    argument_2[i_argument_2] = '\0';                          // <
 
-    if (argument_1[0] == 91)                                  // > Для работы пользователя с памятью через адреса
-    {                                                         //   (atoi() переводит строку в соответствующий integer; 91 -- номер '[' в ASCII)
-        address_1 = atoi(argument_1 + 1);
-    }
-
-    if (argument_2[0] == 91)
+    if(strcmp(comand, "MOV") == 0)                                                        // > Команда MOV
     {
-        address_2 = atoi(argument_2);
-    }                                                         // <
+        if(strcmp(argument_1, "A") == 0)                                              // > Запись в регистр А
+        {
+            if(strcmp(argument_2, "B") == 0)
+                reg_a = reg_b;
+            else if(strcmp(argument_2, "C") == 0)
+                reg_a = reg_c;
+            else if(strcmp(argument_2, "D") == 0)
+                reg_a = reg_d;
+            else if(argument_2[0] == '[')
+                reg_a = atoi(argument_2 + 1);
+            else
+                reg_a = atoi(argument_2);                                             // <
+        }
+        else if(strcmp(argument_1, "B") == 0)                                         // > Запись в регистр В
+        {
+            if(strcmp(argument_2, "A") == 0)
+                reg_b = reg_a;
+            else if(strcmp(argument_2, "C") == 0)
+                reg_b = reg_c;
+            else if(strcmp(argument_2, "D") == 0)
+                reg_b = reg_d;
+            else if(argument_2[0] == '[')
+                reg_b = atoi(argument_2 + 1);
+            else
+                reg_b = atoi(argument_2);                                             // <
+        }
+        else if(strcmp(argument_1, "C") == 0)                                         // > Запись в регистр С
+        {
+            if(strcmp(argument_2, "A") == 0)
+                reg_c = reg_a;
+            else if(strcmp(argument_2, "B") == 0)
+                reg_c = reg_b;
+            else if(strcmp(argument_2, "D") == 0)
+                reg_c = reg_d;
+            else if(argument_2[0] == '[')
+                reg_c = atoi(argument_2 + 1);
+            else
+                reg_c = atoi(argument_2);                                             // <
+        }
+        else if(strcmp(argument_1, "D") == 0)                                         // > Запись в регистр D
+        {
+            if(strcmp(argument_2, "A") == 0)
+                reg_d = reg_a;
+            else if(strcmp(argument_2, "B") == 0)
+                reg_d = reg_b;
+            else if(strcmp(argument_2, "C") == 0)
+                reg_d = reg_c;
+            else if(argument_2[0] == '[')
+                reg_d = atoi(argument_2 + 1);
+            else
+                reg_d = atoi(argument_2);                                             // <
+        }
+        else if(argument_1[0] == '[')                                                 // > Запись в память по адресу
+        {
+            if(strcmp(argument_2, "A") == 0)
+                memory[atoi(argument_1 + 1)] = reg_a;
+            else if(strcmp(argument_2, "B") == 0)
+                memory[atoi(argument_1 + 1)] = reg_b;
+            else if(strcmp(argument_2, "C") == 0)
+                memory[atoi(argument_1 + 1)] = reg_c;
+            else if(strcmp(argument_2, "D") == 0)
+                memory[atoi(argument_1 + 1)] = reg_d;
+            else if(argument_2[0] == '[')
+                memory[atoi(argument_1 + 1)] = atoi(argument_2 + 1);
+            else
+                memory[atoi(argument_1 + 1)] = atoi(argument_2);                      // <
+        }
+    }                                                                                       // < Комадна MOV
+
+printf("%i\n", reg_a);
 
     // switch(comand)                                            // > Собственно, главная часть нашего симулятора. Данный кусок кода предназначен
-    // {                                                              выполнять одну строку исходного кода. Потом это всё будет запихнуто в ещё один
-    //     case "MOV":                                                switch(), чтобы выполнять весь исходный код из файла. Ииии да... Пока не работает.
+    // {                                                         //   выполнять одну строку исходного кода. Потом это всё будет запихнуто в ещё один
+    //     case "MOV":                                           //   switch(), чтобы выполнять весь исходный код из файла. Ииии да... Пока не работает.
     //         switch(argument_1)
     //         {
     //             case "A":
@@ -111,6 +175,7 @@ int main(void)
     //         }
     // }                                                         // <
 
+    printf("_________________________________________________________\n");
     printf("%i %i\n", sizeof(int), sizeof(char));                       // > Это я проверял всякую парашу. Не обращай внимания
 
     printf("%s %i %i\n", comand, i_comand, size_comand);
