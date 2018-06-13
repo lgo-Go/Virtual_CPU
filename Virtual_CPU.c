@@ -13,15 +13,12 @@ int main(void)
     char comand[size_comand];
     char argument_1[size_argument_1];
     char argument_2[size_argument_2];
-
-    int address_1 = 0;                                        // Если пользователь хочет произвести действие с памятью через адрес,
-    int address_2 = 0;                                        // сюда сораняется номер ячейки памяти, который он ввёл
+    FILE *pf;
 
     int memory[256] = {0};
     int reg_a, reg_b, reg_c, reg_d,
         carry_flag, zero_flag,
         *stack_pointer, *instruction_pointer;
-    FILE *pf;
 
 
     if((pf = fopen("assembler_code.txt", "r")) == NULL)       // Открытие файла с исходным кодом
