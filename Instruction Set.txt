@@ -1,0 +1,10 @@
+–егистр общего назначени€: A, B, C, D
+јдрес с использованием константы: [constant]
+Constant: любое число между 0..255 (8 бит без знака)
+
+ 	 опирование значени€
+MOV reg reg
+MOV reg address
+MOV reg constant
+MOV address reg
+MOV address constant
