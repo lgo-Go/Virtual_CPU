@@ -32,9 +32,9 @@ int main(void)
 
     while(feof(pf) == 0)
     {
-        while((comand[i_comand] = getc(pf)) != ' ')                                            // > Расчленяем строку из исходного кода на команду, аргумент 1 и аргумент 2, 
-        {                                                                                      //   и записываем их в отдельные строки
-            if(comand[i_comand] == EOF || comand[i_comand] == '\n')
+        while((comand[i_comand] = getc(pf)) != ' ')                                           // > Расчленяем строку из исходного кода на команду, аргумент 1 и аргумент 2, 
+        {                                                                                     //   и записываем их в отдельные строки
+            if(comand[i_comand] == EOF)
                 break;
             ++i_comand;
             ++size_comand;
@@ -48,16 +48,21 @@ int main(void)
                 ++i_argument_1;
                 ++size_argument_1;
         }
-        argument_1[i_argument_1] = '\0';
 
-        while((argument_2[i_argument_2] = getc(pf)) != ' ')
+        if(argument_1[i_argument_1] != '\n')
         {
-            if(argument_2[i_argument_2] == EOF || argument_2[i_argument_2] == '\n')
-                break;
-            ++i_argument_2;
-            ++size_argument_2;
+            while((argument_2[i_argument_2] = getc(pf)) != ' ')
+            {
+                if(argument_2[i_argument_2] == EOF || argument_2[i_argument_2] == '\n')
+                    break;
+                ++i_argument_2;
+                ++size_argument_2;
+            }
+            argument_2[i_argument_2] = '\0';
         }
-        argument_2[i_argument_2] = '\0';                                                       // <
+
+        argument_1[i_argument_1] = '\0';
+                                                                                              // <
 
         if(strcmp(comand, "MOV") == 0)                                                        // > Команда MOV
         {
@@ -129,6 +134,31 @@ int main(void)
                     memory[atoi(argument_1 + 1)] = atoi(argument_2);                      // <
             }
         }                                                                                     // < Комадна MOV
+
+        if(strcmp(comand, "INC") == 0)                                                        // > Команда INC
+        {
+            if(strcmp(argument_1, "A") == 0)
+                ++reg_a;
+            else if(strcmp(argument_1, "B") == 0)
+                ++reg_b;
+            else if(strcmp(argument_1, "C") == 0)
+                ++reg_c;
+            else if(strcmp(argument_1, "D") == 0)
+                ++reg_d;
+            printf("%c\n", argument_1[i_argument_1]);
+        }                                                                                     // <
+
+        if(strcmp(comand, "DEC") == 0)                                                        // > Команда DEC
+        {
+            if(strcmp(argument_1, "A") == 0)
+                --reg_a;
+            else if(strcmp(argument_1, "B") == 0)
+                --reg_b;
+            else if(strcmp(argument_1, "C") == 0)
+                --reg_c;
+            else if(strcmp(argument_1, "D") == 0)
+                --reg_d;
+        }                                                                                     // <
 
     printf("%s %i %i\n", comand, i_comand, size_comand);
     printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);

@@ -3,3 +3,5 @@ MOV B 12
 MOV [0] A
 MOV A B
 MOV B [0]
+INC A
+DEC B
