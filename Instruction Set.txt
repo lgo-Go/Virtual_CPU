@@ -8,3 +8,7 @@ MOV reg address
 MOV reg constant
 MOV address reg
 MOV address constant
+
+	Инкремент и декремент
+INC reg 
+DEC reg
