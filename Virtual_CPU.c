@@ -23,7 +23,7 @@ int main(void)
 
     if((pf = fopen("assembler_code.txt", "r")) == NULL)       // Открытие файла с исходным кодом
     {
-        fprintf(stderr, "file open error");
+        fprintf(stderr, "Error opening file.\n");
         exit(EXIT_FAILURE);
     }
 
@@ -160,10 +160,10 @@ int main(void)
                 --reg_d;
         }                                                                                     // <
 
-    printf("%s %i %i\n", comand, i_comand, size_comand);
-    printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);
-    printf("%s %i %i\n", argument_2, i_argument_2, size_argument_2);
-    printf("\n");
+        printf("%s %i %i\n", comand, i_comand, size_comand);
+        printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);
+        printf("%s %i %i\n", argument_2, i_argument_2, size_argument_2);
+        printf("\n");
 
         i_comand = 0;
         i_argument_1 = 0;
@@ -175,6 +175,9 @@ int main(void)
 
     printf("_________________________________________________________\n");
     printf("%i %i\n", reg_a, reg_b);
+
+    if (fclose(pf) != 0)
+        fprintf(stderr, "Error closing file.\n");
 
     return 0;
 }
