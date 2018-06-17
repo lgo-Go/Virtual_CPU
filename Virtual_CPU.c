@@ -60,9 +60,10 @@ int main(void)
             }
             argument_2[i_argument_2] = '\0';
         }
-                                                                                              // <
 
         argument_1[i_argument_1] = '\0';
+                                                                                              // <
+
 
         if(strcmp(comand, "MOV") == 0)                                                        // > Команда MOV
         {
