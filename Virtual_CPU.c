@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+// int characters_counter(FILE *file_pointer, int string_number);
+
 int main(void)
 {
     int i_comand = 0;                                         // > Счётчики символов в комаде и аргументах
@@ -177,8 +179,27 @@ int main(void)
     printf("_________________________________________________________\n");
     printf("%i %i\n", reg_a, reg_b);
 
+    printf("%i\n", characters_counter(pf, 2));
+
     if (fclose(pf) != 0)
         fprintf(stderr, "Error closing file.\n");
 
     return 0;
 }
+
+// int characters_counter(FILE *file_pointer, int string_number)
+// {
+//     int ch_amount = 0;
+//     int str_amount = 0;
+//     char ch;
+
+//     while(str_amount < (string_number - 1))
+//     {
+//         while((ch = getc(file_pointer)) != '\n')
+//             ++ch_amount;
+//         ++ch_amount;
+//         ++str_amount;
+//     }
+
+//     return ch_amount;
+// }
