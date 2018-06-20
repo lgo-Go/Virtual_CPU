@@ -219,29 +219,6 @@ int main(void)
     return 0;
 }
 
-// int characters_counter(FILE *file_pointer, int string_number)
-// {
-//     int ch_amount = 0;
-//     int str_amount = 0;
-//     char ch;
-
-//     while(str_amount < (string_number - 1))
-//     {
-//         while(ch!= '\n')
-//         {
-//             ch = getc(file_pointer);
-//             ++ch_amount;
-//             if(ch == EOF)
-//                 break;
-//         }
-//         // fseek(file_pointer, -1, SEEK_SET);
-//         ++ch_amount;
-//         ++str_amount;
-//     }
-
-//     return ch_amount;
-// }
-
 int characters_counter(FILE* file_pointer, int string_number)
 {
     char ch;
