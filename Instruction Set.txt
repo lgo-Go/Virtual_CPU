@@ -12,3 +12,10 @@ MOV address constant
         Инкремент и декремент
 INC reg 
 DEC reg
+        Умножение и деление
+MUL reg
+MUL address
+MUL constant
+DIV reg
+DIV address
+DIV constant
