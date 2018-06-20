@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// int characters_counter(FILE *file_pointer, int string_number);
+int characters_counter(FILE *file_pointer, int string_number);
 
 int main(void)
 {
@@ -211,7 +211,7 @@ int main(void)
     printf("_________________________________________________________\n");
     printf("%i %i\n", reg_a, reg_b);
 
-    printf("%i\n", characters_counter(pf, 2));
+    printf("%i\n", characters_counter(pf, 3));
 
     if (fclose(pf) != 0)
         fprintf(stderr, "Error closing file.\n");
@@ -227,11 +227,33 @@ int main(void)
 
 //     while(str_amount < (string_number - 1))
 //     {
-//         while((ch = getc(file_pointer)) != '\n')
+//         while(ch!= '\n')
+//         {
+//             ch = getc(file_pointer);
 //             ++ch_amount;
+//             if(ch == EOF)
+//                 break;
+//         }
+//         // fseek(file_pointer, -1, SEEK_SET);
 //         ++ch_amount;
 //         ++str_amount;
 //     }
 
 //     return ch_amount;
 // }
+
+int characters_counter(FILE* file_pointer, int string_number)
+{
+    char ch;
+    int ch_amount = 0;
+
+    fseek(file_pointer, 0, SEEK_SET );
+    for (int str_amount = 0; str_amount < (string_number - 1); ++str_amount)
+    {
+        while((ch = getc(file_pointer)) != '\n')
+            ++ch_amount;
+        ++ch_amount;
+    }
+
+    return ch_amount;
+}
