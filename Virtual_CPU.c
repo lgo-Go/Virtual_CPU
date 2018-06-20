@@ -157,9 +157,33 @@ int main(void)
                 --reg_b;
             else if(strcmp(argument_1, "C") == 0)
                 --reg_c;
-            else if(strcmp(argument_1, "D") == 0)
+            else if(strcmp(argument_1, "D") == 0) 
                 --reg_d;
         }                                                                                     // <
+
+		if(strcmp(comand, "MUL") == 0)
+		{
+            if(strcmp(argument_1, "A") == 0)
+                reg_a *= reg_a;
+            else if(strcmp(argument_1, "B") == 0)
+                reg_a *= reg_b;
+            else if(strcmp(argument_1, "C") == 0)
+                reg_a *= reg_c;
+            else if(strcmp(argument_1, "D") == 0) 
+                reg_a *= reg_d;
+		}
+
+				if(strcmp(comand, "MUL") == 0)
+		{
+            if(strcmp(argument_1, "A") == 0)
+                reg_a /= reg_a;
+            else if(strcmp(argument_1, "B") == 0)
+                reg_a /= reg_b;
+            else if(strcmp(argument_1, "C") == 0)
+                reg_a /= reg_c;
+            else if(strcmp(argument_1, "D") == 0) 
+                reg_a /= reg_d;
+		}
 
         printf("%s %i %i\n", comand, i_comand, size_comand);
         printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);
