@@ -161,7 +161,7 @@ int main(void)
                 --reg_d;
         }                                                                                     // <
 
-		if(strcmp(comand, "MUL") == 0)
+		if(strcmp(comand, "MUL") == 0)														  // > Команда MUL(умножение)
 		{
             if(strcmp(argument_1, "A") == 0)
                 reg_a *= reg_a;
@@ -171,9 +171,13 @@ int main(void)
                 reg_a *= reg_c;
             else if(strcmp(argument_1, "D") == 0) 
                 reg_a *= reg_d;
-		}
+            else if(argument_1[0] == '[')
+                reg_a *= memory[atoi(argument_1 + 1)];
+            else
+                reg_a *= atoi(argument_1);
+		}																					  // <
 
-				if(strcmp(comand, "MUL") == 0)
+		if(strcmp(comand, "DIV") == 0)														  // > Команада DIV(деление)
 		{
             if(strcmp(argument_1, "A") == 0)
                 reg_a /= reg_a;
@@ -183,7 +187,11 @@ int main(void)
                 reg_a /= reg_c;
             else if(strcmp(argument_1, "D") == 0) 
                 reg_a /= reg_d;
-		}
+			else if(argument_1[0] == '[')
+                reg_a /= memory[atoi(argument_1 + 1)];
+            else
+                reg_a /= atoi(argument_1);
+		}																					  // <
 
         printf("%s %i %i\n", comand, i_comand, size_comand);
         printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);

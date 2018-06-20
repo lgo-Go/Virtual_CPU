@@ -5,3 +5,5 @@ MOV A B
 MOV B [0]
 INC A
 DEC B
+MUL 6
+DIV 3
