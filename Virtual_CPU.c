@@ -159,8 +159,40 @@ int main(void)
                 --reg_b;
             else if(strcmp(argument_1, "C") == 0)
                 --reg_c;
-            else if(strcmp(argument_1, "D") == 0)
+            else if(strcmp(argument_1, "D") == 0) 
                 --reg_d;
+        }                                                                                     // <
+
+        if(strcmp(comand, "MUL") == 0)                                                        // > Команда MUL(умножение)
+        {
+            if(strcmp(argument_1, "A") == 0)
+                reg_a *= reg_a;
+            else if(strcmp(argument_1, "B") == 0)
+                reg_a *= reg_b;
+            else if(strcmp(argument_1, "C") == 0)
+                reg_a *= reg_c;
+            else if(strcmp(argument_1, "D") == 0) 
+                reg_a *= reg_d;
+            else if(argument_1[0] == '[')
+                reg_a *= memory[atoi(argument_1 + 1)];
+            else
+                reg_a *= atoi(argument_1);
+        }                                                                                     // <
+
+        if(strcmp(comand, "DIV") == 0)                                                        // > Команада DIV(деление)
+        {
+            if(strcmp(argument_1, "A") == 0)
+                reg_a /= reg_a;
+            else if(strcmp(argument_1, "B") == 0)
+                reg_a /= reg_b;
+            else if(strcmp(argument_1, "C") == 0)
+                reg_a /= reg_c;
+            else if(strcmp(argument_1, "D") == 0) 
+                reg_a /= reg_d;
+            else if(argument_1[0] == '[')
+                reg_a /= memory[atoi(argument_1 + 1)];
+            else
+                reg_a /= atoi(argument_1);
         }                                                                                     // <
 
         printf("%s %i %i\n", comand, i_comand, size_comand);
