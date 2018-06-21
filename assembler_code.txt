@@ -2,5 +2,5 @@ MOV A 5
 MOV B 5
 DEC B
 MUL B
-MOV B 1
 CMP B 1
+JMP 3

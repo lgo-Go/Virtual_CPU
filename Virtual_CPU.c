@@ -254,10 +254,21 @@ int main(void)
             }                                                                             // <
         }                                                                                     // < Команда CMP
 
+        // if(strcmp(comand, "JMP") == 0)                                                        // > Команда JMP
+        // {
+        //     while(zero_flag != TRUE)
+        //         fseek(pf, characters_counter(pf, atoi(argument_1)), SEEK_SET);
+        // }                                                                                     // <
+
         printf("%s %i %i\n", comand, i_comand, size_comand);
         printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);
         printf("%s %i %i\n", argument_2, i_argument_2, size_argument_2);
         printf("\n");
+
+        
+
+        printf("%i %i\n", reg_a, reg_b);
+        printf("_________________________________________________________\n");
 
         i_comand = 0;
         i_argument_1 = 0;
@@ -267,12 +278,7 @@ int main(void)
         size_argument_2 = 1;
     }
 
-    printf("_________________________________________________________\n");
-    printf("%i %i\n", reg_a, reg_b);
-
-    printf("%i\n", characters_counter(pf, 3));
-
-    printf("%i\n", zero_flag);
+    printf("%li\n", ftel());
 
     if (fclose(pf) != 0)
         fprintf(stderr, "Error closing file.\n");
@@ -285,7 +291,7 @@ int characters_counter(FILE* file_pointer, int string_number)
     char ch;
     int ch_amount = 0;
 
-    fseek(file_pointer, 0, SEEK_SET );
+    fseek(file_pointer, 0, SEEK_SET);
     for (int str_amount = 0; str_amount < (string_number - 1); ++str_amount)
     {
         while((ch = getc(file_pointer)) != '\n')
