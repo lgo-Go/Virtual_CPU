@@ -12,7 +12,7 @@ MOV address constant
         Инкремент и декремент
 INC reg 
 DEC reg
-<<<<<<< HEAD
+
         Умножение и деление
 MUL reg
 MUL address
@@ -20,7 +20,6 @@ MUL constant
 DIV reg
 DIV address
 DIV constant
-=======
 
         Сложенеи и вычитание
 ADD reg, reg
@@ -29,4 +28,11 @@ ADD reg, constant
 SUB reg, reg
 SUB reg, address
 SUB reg, constant
->>>>>>> Igor_B
+
+        Сравнение. Устанавливает флаг нуля в TRUE, если два значения равны
+CMP reg reg
+CMP reg address
+CMP reg constant
+
+        Условный переход. Переходит на указанную строчку кода, если флаг нуля установлен в FALSE
+JMP constant
