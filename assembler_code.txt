@@ -1,5 +1,5 @@
-MOV A 5
-MOV B 5
+MOV A 6
+MOV B 6
 DEC B
 MUL B
 CMP B 1

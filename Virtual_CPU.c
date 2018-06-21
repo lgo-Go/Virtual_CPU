@@ -5,7 +5,7 @@
 #define TRUE 1
 #define FALSE 0
 
-int characters_counter(FILE *file_pointer, int string_number); // Возвращает количетво символов от начала файла до указанной строки
+long int characters_counter(FILE *file_pointer, int string_number); // Возвращает количетво символов от начала файла до указанной строки
 
 int main(void)
 {
@@ -254,20 +254,15 @@ int main(void)
             }                                                                             // <
         }                                                                                     // < Команда CMP
 
-        // if(strcmp(comand, "JMP") == 0)                                                        // > Команда JMP
-        // {
-        //     while(zero_flag != TRUE)
-        //         fseek(pf, characters_counter(pf, atoi(argument_1)), SEEK_SET);
-        // }                                                                                     // <
+        if(strcmp(comand, "JMP") == 0)                                                        // > Команда JMP
+        {
+            if(zero_flag != TRUE)
+                fseek(pf, characters_counter(pf, atoi(argument_1)), SEEK_SET);
+        }                                                                                     // <
 
-        printf("%s %i %i\n", comand, i_comand, size_comand);
-        printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);
-        printf("%s %i %i\n", argument_2, i_argument_2, size_argument_2);
         printf("\n");
-
-        
-
-        printf("%i %i\n", reg_a, reg_b);
+        printf(" A    B    C    D    Z  \n");
+        printf("%3i  %3i  %3i  %3i  %3i\n", reg_a, reg_b, reg_c, reg_d, zero_flag);
         printf("_________________________________________________________\n");
 
         i_comand = 0;
@@ -278,25 +273,23 @@ int main(void)
         size_argument_2 = 1;
     }
 
-    printf("%li\n", ftel());
-
     if (fclose(pf) != 0)
         fprintf(stderr, "Error closing file.\n");
 
     return 0;
 }
 
-int characters_counter(FILE* file_pointer, int string_number)
+long int characters_counter(FILE* file_pointer, int string_number)
 {
     char ch;
-    int ch_amount = 0;
+    long int ch_amount = 0;
 
     fseek(file_pointer, 0, SEEK_SET);
     for (int str_amount = 0; str_amount < (string_number - 1); ++str_amount)
     {
         while((ch = getc(file_pointer)) != '\n')
             ++ch_amount;
-        ++ch_amount;
+        ch_amount += 2;
     }
 
     return ch_amount;
