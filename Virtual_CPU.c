@@ -193,6 +193,168 @@ int main(void)
                 reg_a /= atoi(argument_1);
         }                                                                                     // <
 
+        if(strcmp(comand, "ADD") == 0)                                                        // > Команда ADD(сложение)
+        {
+                    if(strcmp(argument_1, "A") == 0)                                          // > сложение с регистром A
+            {
+                if(strcmp(argument_2, "B") == 0)
+                    reg_a += reg_b;
+                else if(strcmp(argument_2, "A") == 0)
+                	reg_a += reg_a;
+                else if(strcmp(argument_2, "C") == 0)
+                    reg_a += reg_c;
+                else if(strcmp(argument_2, "D") == 0)
+                    reg_a += reg_d;
+                else if(argument_2[0] == '[')
+                    reg_a += memory[atoi(argument_2 + 1)];
+                else
+                    reg_a += atoi(argument_2);                                                // <
+            }
+            else if(strcmp(argument_1, "B") == 0)                                             // > сложение с регистром B
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    reg_b += reg_a;
+                else if(strcmp(argument_2, "B") == 0)
+                    reg_b += reg_b;
+                else if(strcmp(argument_2, "C") == 0)
+                    reg_b += reg_c;
+                else if(strcmp(argument_2, "D") == 0)
+                    reg_b += reg_d;
+                else if(argument_2[0] == '[')
+                    reg_b += memory[atoi(argument_2 + 1)];
+                else
+                    reg_b += atoi(argument_2);                                                // <
+            }
+            else if(strcmp(argument_1, "C") == 0)                                             // > сложение с регистром C
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    reg_c += reg_a;
+                else if(strcmp(argument_2, "C") == 0)
+                    reg_c += reg_c;
+                else if(strcmp(argument_2, "B") == 0)
+                    reg_c += reg_b;
+                else if(strcmp(argument_2, "D") == 0)
+                    reg_c += reg_d;
+                else if(argument_2[0] == '[')
+                    reg_c += memory[atoi(argument_2 + 1)];
+                else
+                    reg_c += atoi(argument_2);                                                // <
+            }
+            else if(strcmp(argument_1, "D") == 0)                                             // > сложение с регистром D
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    reg_d += reg_a;
+                else if(strcmp(argument_2, "D") == 0)
+                    reg_d += reg_d;
+                else if(strcmp(argument_2, "B") == 0)
+                    reg_d += reg_b;
+                else if(strcmp(argument_2, "C") == 0)
+                    reg_d += reg_c;
+                else if(argument_2[0] == '[')
+                    reg_d += memory[atoi(argument_2 + 1)];
+                else
+                    reg_d += atoi(argument_2);                                                // <
+            }
+            else if(argument_1[0] == '[')                                                     // > сложение по адресу
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    memory[atoi(argument_1 + 1)] += reg_a;
+                else if(strcmp(argument_2, "B") == 0)
+                    memory[atoi(argument_1 + 1)] += reg_b;
+                else if(strcmp(argument_2, "[") == 0)
+                    memory[atoi(argument_1 + 1)] += memory[atoi(argument_2 + 1)];
+                else if(strcmp(argument_2, "C") == 0)
+                    memory[atoi(argument_1 + 1)] += reg_c;
+                else if(strcmp(argument_2, "D") == 0)
+                    memory[atoi(argument_1 + 1)] += reg_d;
+                else if(argument_2[0] == '[')
+                    memory[atoi(argument_1 + 1)] += memory[atoi(argument_2 + 1)];
+                else
+                    memory[atoi(argument_1 + 1)] += atoi(argument_2);                         // <
+            }
+        }                                                                                     // <
+
+        if(strcmp(comand, "SUB") == 0)                                                        // > Команда SUB(вычитание)
+        {
+                    if(strcmp(argument_1, "A") == 0)                                          // > вычитание из регистра A
+            {
+                if(strcmp(argument_2, "B") == 0)
+                    reg_a -= reg_b;
+                else if(strcmp(argument_2, "A") == 0)
+                	reg_a -= reg_a;
+                else if(strcmp(argument_2, "C") == 0)
+                    reg_a -= reg_c;
+                else if(strcmp(argument_2, "D") == 0)
+                    reg_a -= reg_d;
+                else if(argument_2[0] == '[')
+                    reg_a -= memory[atoi(argument_2 + 1)];
+                else
+                    reg_a -= atoi(argument_2);                                                // <
+            }
+            else if(strcmp(argument_1, "B") == 0)                                             // > вычитание из регистра B
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    reg_b -= reg_a;
+                else if(strcmp(argument_2, "B") == 0)
+                    reg_b -= reg_b;
+                else if(strcmp(argument_2, "C") == 0)
+                    reg_b -= reg_c;
+                else if(strcmp(argument_2, "D") == 0)
+                    reg_b -= reg_d;
+                else if(argument_2[0] == '[')
+                    reg_b -= memory[atoi(argument_2 + 1)];
+                else
+                    reg_b -= atoi(argument_2);                                                // <
+            }
+            else if(strcmp(argument_1, "C") == 0)                                             // > вычитание из регистра C
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    reg_c -= reg_a;
+                else if(strcmp(argument_2, "C") == 0)
+                    reg_c -= reg_c;
+                else if(strcmp(argument_2, "B") == 0)
+                    reg_c -= reg_b;
+                else if(strcmp(argument_2, "D") == 0)
+                    reg_c -= reg_d;
+                else if(argument_2[0] == '[')
+                    reg_c -= memory[atoi(argument_2 + 1)];
+                else
+                    reg_c -= atoi(argument_2);                                                // <
+            }
+            else if(strcmp(argument_1, "D") == 0)                                             // > вычитание из регистра D
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    reg_d -= reg_a;
+                else if(strcmp(argument_2, "D") == 0)
+                    reg_d -= reg_d;
+                else if(strcmp(argument_2, "B") == 0)
+                    reg_d -= reg_b;
+                else if(strcmp(argument_2, "C") == 0)
+                    reg_d -= reg_c;
+                else if(argument_2[0] == '[')
+                    reg_d -= memory[atoi(argument_2 + 1)];
+                else
+                    reg_d -= atoi(argument_2);                                                // <
+            }
+            else if(argument_1[0] == '[')                                                     // > вычитание из адреса
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    memory[atoi(argument_1 + 1)] -= reg_a;
+                else if(strcmp(argument_2, "B") == 0)
+                    memory[atoi(argument_1 + 1)] -= reg_b;
+                else if(strcmp(argument_2, "[") == 0)
+                    memory[atoi(argument_1 + 1)] -= memory[atoi(argument_2 + 1)];
+                else if(strcmp(argument_2, "C") == 0)
+                    memory[atoi(argument_1 + 1)] -= reg_c;
+                else if(strcmp(argument_2, "D") == 0)
+                    memory[atoi(argument_1 + 1)] -= reg_d;
+                else if(argument_2[0] == '[')
+                    memory[atoi(argument_1 + 1)] -= memory[atoi(argument_2 + 1)];
+                else
+                    memory[atoi(argument_1 + 1)] -= atoi(argument_2);                         // <
+            }
+        }                                                                                     // <
+
         printf("%s %i %i\n", comand, i_comand, size_comand);
         printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);
         printf("%s %i %i\n", argument_2, i_argument_2, size_argument_2);
