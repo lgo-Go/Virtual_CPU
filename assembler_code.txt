@@ -7,3 +7,5 @@ INC A
 DEC B
 MUL 6
 DIV 3
+ADD A [B]
+SUB A 45
