@@ -2,35 +2,38 @@
 #include <stdlib.h>
 #include <string.h>
 
-int characters_counter(FILE *file_pointer, int string_number);
+#define TRUE 1
+#define FALSE 0
+
+int characters_counter(FILE *file_pointer, int string_number); // Возвращает количетво символов от начала файла до указанной строки
 
 int main(void)
 {
-    int i_comand = 0;                                         // > Счётчики символов в комаде и аргументах
+    int i_comand = 0;                                          // > Счётчики символов в комаде и аргументах
     int i_argument_1 = 0;
-    int i_argument_2 = 0;                                     // <
-    int size_comand = 1;                                      // > Размеры строк, в которые сохраняются команда и два аргумента
+    int i_argument_2 = 0;                                      // <
+    int size_comand = 1;                                       // > Размеры строк, в которые сохраняются команда и два аргумента
     int size_argument_1 = 1;
-    int size_argument_2 = 1;                                  // <
+    int size_argument_2 = 1;                                   // <
     char comand[size_comand];
     char argument_1[size_argument_1];
     char argument_2[size_argument_2];
     FILE *pf;
 
     int memory[256] = {0};
-    int reg_a, reg_b, reg_c, reg_d,
-        carry_flag, zero_flag,
+    int reg_a = 0, reg_b = 0, reg_c = 0, reg_d = 0,
+        carry_flag = FALSE, zero_flag = FALSE,
         *stack_pointer, *instruction_pointer;
 
 
-    if((pf = fopen("assembler_code.txt", "r")) == NULL)       // Открытие файла с исходным кодом
+    instruction_pointer = memory;
+    stack_pointer = & memory[231];
+
+    if((pf = fopen("assembler_code.txt", "r")) == NULL)        // Открытие файла с исходным кодом
     {
         fprintf(stderr, "Error opening file.\n");
         exit(EXIT_FAILURE);
     }
-
-    stack_pointer = & memory[231];
-    instruction_pointer = memory;
 
     while(feof(pf) == 0)
     {
@@ -195,6 +198,62 @@ int main(void)
                 reg_a /= atoi(argument_1);
         }                                                                                     // <
 
+        if(strcmp(comand, "CMP") == 0)                                                        // > Команда CMP
+        {
+            if(strcmp(argument_1, "A") == 0)                                              // > Сравнение с регистром А
+            {
+                if(strcmp(argument_2, "B") == 0)
+                    zero_flag = (reg_a == reg_b) ? TRUE : FALSE;
+                else if(strcmp(argument_2, "C") == 0)
+                    zero_flag = (reg_a == reg_c) ? TRUE : FALSE;
+                else if(strcmp(argument_2, "D") == 0)
+                    zero_flag = (reg_a == reg_d) ? TRUE : FALSE;
+                else if(argument_2[0] == '[')
+                    zero_flag = (reg_a == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                else
+                    zero_flag = (reg_a == atoi(argument_2)) ? TRUE : FALSE;               // <
+            }
+            else if(strcmp(argument_1, "B") == 0)                                         // > Сравнение с регистром B
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    zero_flag = (reg_b == reg_a) ? TRUE : FALSE;
+                else if(strcmp(argument_2, "C") == 0)
+                    zero_flag = (reg_b == reg_c) ? TRUE : FALSE;
+                else if(strcmp(argument_2, "D") == 0)
+                    zero_flag = (reg_b == reg_d) ? TRUE : FALSE;
+                else if(argument_2[0] == '[')
+                    zero_flag = (reg_b == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                else
+                    zero_flag = (reg_b == atoi(argument_2)) ? TRUE : FALSE;               // <
+            }
+            else if(strcmp(argument_1, "C") == 0)                                         // > Сравнение с регистром C
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    zero_flag = (reg_c == reg_a) ? TRUE : FALSE;
+                else if(strcmp(argument_2, "B") == 0)
+                    zero_flag = (reg_c == reg_b) ? TRUE : FALSE;
+                else if(strcmp(argument_2, "D") == 0)
+                    zero_flag = (reg_c == reg_d) ? TRUE : FALSE;
+                else if(argument_2[0] == '[')
+                    zero_flag = (reg_c == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                else
+                    zero_flag = (reg_c == atoi(argument_2)) ? TRUE : FALSE;               // <
+            }
+            else if(strcmp(argument_1, "D") == 0)                                         // > Сравнение с регистром D
+            {
+                if(strcmp(argument_2, "A") == 0)
+                    zero_flag = (reg_d == reg_a) ? TRUE : FALSE;
+                else if(strcmp(argument_2, "B") == 0)
+                    zero_flag = (reg_d == reg_b) ? TRUE : FALSE;
+                else if(strcmp(argument_2, "C") == 0)
+                    zero_flag = (reg_d == reg_c) ? TRUE : FALSE;
+                else if(argument_2[0] == '[')
+                    zero_flag = (reg_d == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                else
+                    zero_flag = (reg_d == atoi(argument_2)) ? TRUE : FALSE;
+            }                                                                             // <
+        }                                                                                     // < Команда CMP
+
         printf("%s %i %i\n", comand, i_comand, size_comand);
         printf("%s %i %i\n", argument_1, i_argument_1, size_argument_1);
         printf("%s %i %i\n", argument_2, i_argument_2, size_argument_2);
@@ -212,6 +271,8 @@ int main(void)
     printf("%i %i\n", reg_a, reg_b);
 
     printf("%i\n", characters_counter(pf, 3));
+
+    printf("%i\n", zero_flag);
 
     if (fclose(pf) != 0)
         fprintf(stderr, "Error closing file.\n");
