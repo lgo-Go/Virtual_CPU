@@ -1,2 +1,0 @@
-$ cat Makefile
-SRC = Virtual_CPU.c
