@@ -114,88 +114,208 @@ int main(void)
                 *instruction_pointer = 1;
                 ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     reg_b = reg_a;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     reg_b = reg_c;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     reg_b = reg_d;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     reg_b = memory[atoi(argument_2 + 1)];
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     reg_b = atoi(argument_2);                                             // <
+                }
             }
             else if(strcmp(argument_1, "C") == 0)                                         // > Запись в регистр С
             {
                 *instruction_pointer = 2;
                 ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     reg_c = reg_a;
+                }
                 else if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     reg_c = reg_b;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     reg_c = reg_d;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     reg_c = memory[atoi(argument_2 + 1)];
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     reg_c = atoi(argument_2);                                             // <
+                }
             }
             else if(strcmp(argument_1, "D") == 0)                                         // > Запись в регистр D
             {
                 *instruction_pointer = 3;
                 ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     reg_d = reg_a;
+                }
                 else if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     reg_d = reg_b;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     reg_d = reg_c;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     reg_d = memory[atoi(argument_2 + 1)];
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     reg_d = atoi(argument_2);                                             // <
+                }
             }
             else if(argument_1[0] == '[')                                                 // > Запись по адресу
             {
                 *instruction_pointer = atoi(argument_1 + 1);
                 ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     memory[atoi(argument_1 + 1)] = reg_a;
+                }
                 else if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     memory[atoi(argument_1 + 1)] = reg_b;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     memory[atoi(argument_1 + 1)] = reg_c;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     memory[atoi(argument_1 + 1)] = reg_d;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     memory[atoi(argument_1 + 1)] = memory[atoi(argument_2 + 1)];
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     memory[atoi(argument_1 + 1)] = atoi(argument_2);                      // <
+                }
             }
         }                                                                                     // < Комадна MOV
 
         if(strcmp(comand, "INC") == 0)                                                        // > Команда INC
         {
+            *instruction_pointer = 12;
+            ++instruction_pointer;
             if(strcmp(argument_1, "A") == 0)
+            {
+                *instruction_pointer = 0;
+                ++instruction_pointer;
                 ++reg_a;
+            }
             else if(strcmp(argument_1, "B") == 0)
+            {
+                *instruction_pointer = 1;
+                ++instruction_pointer;
                 ++reg_b;
+            }
             else if(strcmp(argument_1, "C") == 0)
+            {
+                *instruction_pointer = 2;
+                ++instruction_pointer;
                 ++reg_c;
+            }
             else if(strcmp(argument_1, "D") == 0)
+            {
+                *instruction_pointer = 3;
+                ++instruction_pointer;
                 ++reg_d;
+            }
             printf("%c\n", argument_1[i_argument_1]);
         }                                                                                     // <
 
         if(strcmp(comand, "DEC") == 0)                                                        // > Команда DEC
         {
+            *instruction_pointer = 14;
+            ++instruction_pointer;
             if(strcmp(argument_1, "A") == 0)
+            {
+                *instruction_pointer = 0;
+                ++instruction_pointer;
                 --reg_a;
+            }
             else if(strcmp(argument_1, "B") == 0)
+            {
+                *instruction_pointer = 1;
+                ++instruction_pointer;
                 --reg_b;
+            }
             else if(strcmp(argument_1, "C") == 0)
+            {
+                *instruction_pointer = 2;
+                ++instruction_pointer;
                 --reg_c;
+            }
             else if(strcmp(argument_1, "D") == 0) 
+            {
+                *instruction_pointer = 3;
+                ++instruction_pointer;
                 --reg_d;
+            }
         }                                                                                     // <
 
         if(strcmp(comand, "MUL") == 0)                                                        // > Команда MUL(умножение)
@@ -284,62 +404,156 @@ int main(void)
 
         if(strcmp(comand, "CMP") == 0)                                                        // > Команда CMP
         {
+            *instruction_pointer = 16;
+            ++instruction_pointer;
             if(strcmp(argument_1, "A") == 0)                                              // > Сравнение с регистром А
             {
+                *instruction_pointer = 0;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     zero_flag = (reg_a == reg_b) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     zero_flag = (reg_a == reg_c) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     zero_flag = (reg_a == reg_d) ? TRUE : FALSE;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     zero_flag = (reg_a == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     zero_flag = (reg_a == atoi(argument_2)) ? TRUE : FALSE;               // <
+                }
             }
             else if(strcmp(argument_1, "B") == 0)                                         // > Сравнение с регистром B
             {
+                *instruction_pointer = 1;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     zero_flag = (reg_b == reg_a) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     zero_flag = (reg_b == reg_c) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     zero_flag = (reg_b == reg_d) ? TRUE : FALSE;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     zero_flag = (reg_b == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     zero_flag = (reg_b == atoi(argument_2)) ? TRUE : FALSE;               // <
+                }
             }
             else if(strcmp(argument_1, "C") == 0)                                         // > Сравнение с регистром C
             {
+                *instruction_pointer = 2;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     zero_flag = (reg_c == reg_a) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     zero_flag = (reg_c == reg_b) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     zero_flag = (reg_c == reg_d) ? TRUE : FALSE;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     zero_flag = (reg_c == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     zero_flag = (reg_c == atoi(argument_2)) ? TRUE : FALSE;               // <
+                }
             }
             else if(strcmp(argument_1, "D") == 0)                                         // > Сравнение с регистром D
             {
+                *instruction_pointer = 3;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     zero_flag = (reg_d == reg_a) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     zero_flag = (reg_d == reg_b) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     zero_flag = (reg_d == reg_c) ? TRUE : FALSE;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     zero_flag = (reg_d == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     zero_flag = (reg_d == atoi(argument_2)) ? TRUE : FALSE;
+                }
             }                                                                             // <
         }                                                                                     // < Команда CMP
 
         if(strcmp(comand, "JMP") == 0)                                                        // > Команда JMP
         {
+            *instruction_pointer = 18;
+            ++instruction_pointer;
+            *instruction_pointer = atoi(argument_1);
+            ++instruction_pointer;
             if(zero_flag != TRUE)
                 fseek(pf, characters_counter(pf, atoi(argument_1)), SEEK_SET);
         }                                                                                     // <
