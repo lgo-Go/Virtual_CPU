@@ -674,10 +674,10 @@ int main(void)
         {
             printf("%c", 205);
         }
-        printf("\n\n");
+        printf("\n");
 
-        printf("  A    B    C    D    Z  \n");                                            // Наименование регистров и их значения
-        printf("%3i  %3i  %3i  %3i  %3i\n", reg_a, reg_b, reg_c, reg_d, zero_flag);
+        printf("  A    B    C    D    Z    C  \n");                                            // Наименование регистров и их значения
+        printf("%3i  %3i  %3i  %3i  %3i  %3i\n", reg_a, reg_b, reg_c, reg_d, zero_flag, carry_flag);
 
         for (int i = 0; i < 50; ++i)                                                      // Одинарная черта, отделяющая регистры от остальной памяти
         {
@@ -697,7 +697,7 @@ int main(void)
         {
             printf("%c", 205);
         }
-        printf("\n");
+        printf("\n\n\n\n\n");
                                                                                               // <
 
         i_comand = 0;
