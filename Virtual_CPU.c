@@ -498,6 +498,10 @@ int main(void)
 
         if(strcmp(comand, "JMP") == 0)                                                        // > Команда JMP
         {
+            *instruction_pointer = 18;
+            ++instruction_pointer;
+            *instruction_pointer = atoi(argument_1);
+            ++instruction_pointer;
             if(zero_flag != TRUE)
                 fseek(pf, characters_counter(pf, atoi(argument_1)), SEEK_SET);
         }                                                                                     // <
