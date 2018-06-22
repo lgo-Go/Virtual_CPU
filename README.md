@@ -9,39 +9,39 @@
 ## Синтаксис:
 
 ### Копирование 
-MOV reg reg
-MOV reg address
-MOV reg constant
-MOV address reg
-MOV address constant
+>MOV reg reg
+>MOV reg address
+>MOV reg constant
+>MOV address reg
+>MOV address constant
 
 ### Инкремент и декремент
-INC reg 
-DEC reg
+>INC reg 
+>DEC reg
 
 ### Умножение и деление
-MUL reg
-MUL address
-MUL constant
-DIV reg
-DIV address
-DIV constant
+>MUL reg
+>MUL address
+>MUL constant
+>DIV reg
+>DIV address
+>DIV constant
 
 ### Сложенеи и вычитание
-ADD reg reg
-ADD reg address
-ADD reg constant
-SUB reg reg
-SUB reg address
-SUB reg constant
+>ADD reg reg
+>ADD reg address
+>ADD reg constant
+>SUB reg reg
+>SUB reg address
+>SUB reg constant
 
 ### Сравнение. Устанавливает флаг нуля в TRUE, если два значения равны
-CMP reg reg
-CMP reg address
-CMP reg constant
+>CMP reg reg
+>CMP reg address
+>CMP reg constant
 
 ### Условный переход. Переходит на указанную строчку кода, если флаг нуля установлен в FALSE
-JMP constant
+>JMP constant
 
 **Адрес с использованием константы: [constant]
 Constant: любое число между  -2 147 483 648 ... 2 147 483 647 (4 байта со знаком)**
@@ -53,3 +53,14 @@ Virtual_CPU.c      | Код симмулятора на языке C
 Makefile.make      | Makefile проекта
 assembler_code.txt | Исполняемый код
 .gitignore         | Избавляет от ненужных файлов в репозитории
+
+## Над проектом работали
+
+Игорь Горбунов             | Игорь Байрамалов
+----------------------------------------------
+Чтение assembler_code.txt  | RAEDME.md
+Makefile                   | MUL
+CMP                        | DIV
+INC                        | ADD
+DEC                        | SUB
+MOV                        |
