@@ -352,57 +352,147 @@ int main(void)
 
         if(strcmp(comand, "CMP") == 0)                                                        // > Команда CMP
         {
+            *instruction_pointer = 16;
+            ++instruction_pointer;
             if(strcmp(argument_1, "A") == 0)                                              // > Сравнение с регистром А
             {
+                *instruction_pointer = 0;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     zero_flag = (reg_a == reg_b) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     zero_flag = (reg_a == reg_c) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     zero_flag = (reg_a == reg_d) ? TRUE : FALSE;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     zero_flag = (reg_a == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     zero_flag = (reg_a == atoi(argument_2)) ? TRUE : FALSE;               // <
+                }
             }
             else if(strcmp(argument_1, "B") == 0)                                         // > Сравнение с регистром B
             {
+                *instruction_pointer = 1;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     zero_flag = (reg_b == reg_a) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     zero_flag = (reg_b == reg_c) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     zero_flag = (reg_b == reg_d) ? TRUE : FALSE;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     zero_flag = (reg_b == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     zero_flag = (reg_b == atoi(argument_2)) ? TRUE : FALSE;               // <
+                }
             }
             else if(strcmp(argument_1, "C") == 0)                                         // > Сравнение с регистром C
             {
+                *instruction_pointer = 2;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     zero_flag = (reg_c == reg_a) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     zero_flag = (reg_c == reg_b) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     zero_flag = (reg_c == reg_d) ? TRUE : FALSE;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     zero_flag = (reg_c == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     zero_flag = (reg_c == atoi(argument_2)) ? TRUE : FALSE;               // <
+                }
             }
             else if(strcmp(argument_1, "D") == 0)                                         // > Сравнение с регистром D
             {
+                *instruction_pointer = 3;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
+                {
+                    *instruction_pointer = 0;
+                    ++instruction_pointer;
                     zero_flag = (reg_d == reg_a) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     zero_flag = (reg_d == reg_b) ? TRUE : FALSE;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     zero_flag = (reg_d == reg_c) ? TRUE : FALSE;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     zero_flag = (reg_d == memory[atoi(argument_2 + 1)]) ? TRUE : FALSE;
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     zero_flag = (reg_d == atoi(argument_2)) ? TRUE : FALSE;
+                }
             }                                                                             // <
         }                                                                                     // < Команда CMP
 
