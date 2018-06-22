@@ -259,27 +259,63 @@ int main(void)
 
         if(strcmp(comand, "INC") == 0)                                                        // > Команда INC
         {
+            *instruction_pointer = 12;
+            ++instruction_pointer;
             if(strcmp(argument_1, "A") == 0)
+            {
+                *instruction_pointer = 0;
+                ++instruction_pointer;
                 ++reg_a;
+            }
             else if(strcmp(argument_1, "B") == 0)
+            {
+                *instruction_pointer = 1;
+                ++instruction_pointer;
                 ++reg_b;
+            }
             else if(strcmp(argument_1, "C") == 0)
+            {
+                *instruction_pointer = 2;
+                ++instruction_pointer;
                 ++reg_c;
+            }
             else if(strcmp(argument_1, "D") == 0)
+            {
+                *instruction_pointer = 3;
+                ++instruction_pointer;
                 ++reg_d;
+            }
             printf("%c\n", argument_1[i_argument_1]);
         }                                                                                     // <
 
         if(strcmp(comand, "DEC") == 0)                                                        // > Команда DEC
         {
+            *instruction_pointer = 14;
+            ++instruction_pointer;
             if(strcmp(argument_1, "A") == 0)
+            {
+                *instruction_pointer = 0;
+                ++instruction_pointer;
                 --reg_a;
+            }
             else if(strcmp(argument_1, "B") == 0)
+            {
+                *instruction_pointer = 1;
+                ++instruction_pointer;
                 --reg_b;
+            }
             else if(strcmp(argument_1, "C") == 0)
+            {
+                *instruction_pointer = 2;
+                ++instruction_pointer;
                 --reg_c;
+            }
             else if(strcmp(argument_1, "D") == 0) 
+            {
+                *instruction_pointer = 3;
+                ++instruction_pointer;
                 --reg_d;
+            }
         }                                                                                     // <
 
         if(strcmp(comand, "MUL") == 0)                                                        // > Команда MUL(умножение)
