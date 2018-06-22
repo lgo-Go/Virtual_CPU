@@ -668,10 +668,37 @@ int main(void)
             }
         }                                                                                     // <
 
-        printf("\n");
-        printf("  A    B    C    D    Z  \n");
+                                                                                              // > Консольный вывод
+
+        for (int i = 0; i < 50; ++i)                                                      // Верхняя двойная черта
+        {
+            printf("%c", 205);
+        }
+        printf("\n\n");
+
+        printf("  A    B    C    D    Z  \n");                                            // Наименование регистров и их значения
         printf("%3i  %3i  %3i  %3i  %3i\n", reg_a, reg_b, reg_c, reg_d, zero_flag);
-        printf("_________________________________________________________\n");
+
+        for (int i = 0; i < 50; ++i)                                                      // Одинарная черта, отделяющая регистры от остальной памяти
+        {
+            printf("%c", 196);
+        }
+        printf("\n");
+
+        for (int i = 0; i < 256; ++i)                                                     // Значения ячеек памяти
+        {
+            printf("%3i", memory[i]);
+            if(((i+1) % 16) == 0)
+                printf("\n");
+        }
+        printf("\n");
+
+        for (int i = 0; i < 50; ++i)                                                      // Нижняя двойная черта
+        {
+            printf("%c", 205);
+        }
+        printf("\n");
+                                                                                              // <
 
         i_comand = 0;
         i_argument_1 = 0;
