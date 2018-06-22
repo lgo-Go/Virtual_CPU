@@ -8,7 +8,7 @@
 
 ## Синтаксис:
 
-### Копирование 
+### Копирование значений
 >MOV reg reg  
 >MOV reg address  
 >MOV reg constant  
@@ -58,11 +58,11 @@ assembler_code.txt | Исполняемый код
 
 ## Над проектом работали
 
-Игорь Горбунов             | Игорь Байрамалов
----------------------------|------------------
-Чтение assembler_code.txt  | RAEDME.md
-Makefile                   | MUL
-CMP                        | DIV
-INC                        | ADD
-DEC                        | SUB
-MOV                        |
+Игорь Горбунов              | Игорь Байрамалов
+----------------------------|------------------
+Обработка assembler_code.txt| RAEDME.md
+Makefile                    | MUL
+CMP                         | DIV
+INC                         | ADD
+DEC                         | SUB
+MOV                         |
