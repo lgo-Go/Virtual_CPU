@@ -72,21 +72,47 @@ int main(void)
 
         if(strcmp(comand, "MOV") == 0)                                                        // > Команда MOV
         {
+            *instruction_pointer = 10;
+            ++instruction_pointer;
             if(strcmp(argument_1, "A") == 0)                                              // > Запись в регистр А
             {
+                *instruction_pointer = 0;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "B") == 0)
+                {
+                    *instruction_pointer = 1;
+                    ++instruction_pointer;
                     reg_a = reg_b;
+                }
                 else if(strcmp(argument_2, "C") == 0)
+                {
+                    *instruction_pointer = 2;
+                    ++instruction_pointer;
                     reg_a = reg_c;
+                }
                 else if(strcmp(argument_2, "D") == 0)
+                {
+                    *instruction_pointer = 3;
+                    ++instruction_pointer;
                     reg_a = reg_d;
+                }
                 else if(argument_2[0] == '[')
+                {
+                    *instruction_pointer = atoi(argument_2 + 1);
+                    ++instruction_pointer;
                     reg_a = memory[atoi(argument_2 + 1)];
+                }
                 else
+                {
+                    *instruction_pointer = atoi(argument_2);
+                    ++instruction_pointer;
                     reg_a = atoi(argument_2);                                             // <
+                }
             }
             else if(strcmp(argument_1, "B") == 0)                                         // > Запись в регистр В
             {
+                *instruction_pointer = 1;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
                     reg_b = reg_a;
                 else if(strcmp(argument_2, "C") == 0)
@@ -100,6 +126,8 @@ int main(void)
             }
             else if(strcmp(argument_1, "C") == 0)                                         // > Запись в регистр С
             {
+                *instruction_pointer = 2;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
                     reg_c = reg_a;
                 else if(strcmp(argument_2, "B") == 0)
@@ -113,6 +141,8 @@ int main(void)
             }
             else if(strcmp(argument_1, "D") == 0)                                         // > Запись в регистр D
             {
+                *instruction_pointer = 3;
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
                     reg_d = reg_a;
                 else if(strcmp(argument_2, "B") == 0)
@@ -126,6 +156,8 @@ int main(void)
             }
             else if(argument_1[0] == '[')                                                 // > Запись по адресу
             {
+                *instruction_pointer = atoi(argument_1 + 1);
+                ++instruction_pointer;
                 if(strcmp(argument_2, "A") == 0)
                     memory[atoi(argument_1 + 1)] = reg_a;
                 else if(strcmp(argument_2, "B") == 0)
